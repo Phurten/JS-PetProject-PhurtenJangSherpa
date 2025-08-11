@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Mode</title>
+    <!-- using favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+    <link rel="icon" type="image/x-icon" href="assets/favicon-2.ico">
+    <link rel="stylesheet" href="styles/styles.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- welcome screen -->
+    <div id="welcome-screen" class="screen active">
+
+        <div class="container">
+            <div class="glass-card main-card">
+                <div class="content">
+                    <div class="logo-section">
+                        <div class="lotus-logo" id="welcome-lotus">
+                            <img src="assets/icons/logo.png" alt="Zen Mode Logo" class="lotus-img"
+                                style="width:100%;height:100%;">
+                        </div>
+
+                        <h1 class="app-title">Zen Mode</h1>
+                        <p class="app-subtitle">Find your inner peace</p>
+                    </div>
+
+                    <div class="glass-card quote-card">
+                        <p class="daily-quote" id="daily-quote"></p>
+                    </div>
+
+                    <div class="question-section">
+                        <h2 class="question">How are you feeling right now?</h2>
+                    </div>
+
+                    <button class="primary-btn" id="start-btn">Explore my mood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- mood selection screen -->
+    <div id="mood-screen" class="screen">
+        <div class="container">
+            <button class="back-btn" id="mood-back-btn">
+                <img src="assets/icons/arrow-left.svg" alt="Back Button Icon">
+            </button>
+
+            <div class="glass-card">
+                <div class="content">
+                    <div class="logo-section">
+                        <div class="lotus-logo small">
+                            <img src="assets/icons/logo.png" alt="Zen Mode Logo" class="lotus-img"
+                                style="width:100%;height:100%;">
+                        </div>
+                        <h2 class="screen-title">Choose your current mood</h2>
+                    </div>
+
+                    <div class="mood-grid">
+                        <div class="mood-option" data-mood="anxious">
+                            <div class="mood-content">
+                                <span class="mood-label">Anxious</span>
+                                <span class="mood-description">Feeling worried or nervous</span>
+                            </div>
+                            <div class="mood-indicator">
+                                <object type="image/svg+xml" data="assets/icons/arrow-right.svg"></object>
+                            </div>
+                        </div>
+                        <div class="mood-option" data-mood="tired">
+                            <div class="mood-content">
+                                <span class="mood-label">Tired</span>
+                                <span class="mood-description">Feeling drained or sleepy</span>
+                            </div>
+                            <div class="mood-indicator">
+                                <object type="image/svg+xml" data="assets/icons/arrow-right.svg"></object>
+                            </div>
+                        </div>
+                        <div class="mood-option" data-mood="restless">
+                            <div class="mood-content">
+                                <span class="mood-label">Restless</span>
+                                <span class="mood-description">Feeling agitated or unsettled</span>
+                            </div>
+                            <div class="mood-indicator">
+                                <object type="image/svg+xml" data="assets/icons/arrow-right.svg"></object>
+                            </div>
+                        </div>
+                        <div class="mood-option" data-mood="overwhelmed">
+                            <div class="mood-content">
+                                <span class="mood-label">Overwhelmed</span>
+                                <span class="mood-description">Feeling stressed or burdened</span>
+                            </div>
+                            <div class="mood-indicator">
+                                <object type="image/svg+xml" data="assets/icons/arrow-right.svg"></object>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- session selection screen -->
+    <div id="session-screen" class="screen">
+        <div class="container">
+            <button class="back-btn" id="session-back-btn">
+                <img src="assets/icons/arrow-left.svg" alt="Back Button Icon">
+            </button>
+
+            <div class="glass-card">
+                <div class="content">
+                    <div class="logo-section">
+                        <div class="lotus-logo small">
+                            <img src="assets/icons/logo.png" alt="Zen Mode Logo" class="lotus-img"
+                                style="width:100%;height:100%;">
+                        </div>
+                        <h2 class="screen-title">Recommended for you</h2>
+                        <div class="mood-badge" id="current-mood-badge"></div>
+                    </div>
+
+                    <div class="session-list" id="session-list">
+                        <!-- sessions will be populated by javaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- active session screen -->
+    <div id="active-screen" class="screen">
+
+        <div class="container">
+            <button class="back-btn" id="active-back-btn">
+                <img src="assets/icons/arrow-left.svg" alt="Back Button Icon">
+            </button>
+
+            <div class="glass-card">
+                <div class="content session-content">
+                    <div class="session-lotus-container">
+                        <div class="lotus-logo large" id="session-lotus">
+                            <img src="assets/icons/logo.png" alt="Zen Mode Logo" class="lotus-img"
+                                style="width:100%;height:100%;">
+                        </div>
+                    </div>
+
+                    <h2 class="session-title" id="session-title"></h2>
+                    <div class="timer" id="timer">5:00</div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="session-controls">
+                        <button class="control-btn" id="reset-btn">
+                            <img src="assets/icons/restart.svg" alt="Restart Button Icon">
+                        </button>
+                        <button class="control-btn primary" id="play-pause-btn">
+                            <img class="play-icon" src="assets/icons/play.svg" alt="Play Button Icon">
+                            <img class="pause-icon hidden" src="assets/icons/pause.svg" alt="Pause Button Icon">
+                        </button>
+                        <button class="control-btn" id="sound-btn">
+                            <img class="sound-on" src="assets/icons/speaker.svg" alt="Speaker Button Icon">
+                            <img class="sound-off hidden" src="assets/icons/mute.svg" alt="Mute Button Icon">
+                        </button>
+                    </div>
+
+                    <div class="session-instructions" id="session-instructions">
+                        <!-- instructions will be populated by javaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- completion screen -->
+    <div id="complete-screen" class="screen">
+        <div class="container">
+            <button class="back-btn" id="complete-back-btn">
+                <img src="assets/icons/arrow-left.svg" alt="Back Button Icon">
+            </button>
+
+            <div class="glass-card">
+                <div class="content">
+                    <div class="completion-section">
+                        <div class="lotus-logo large completed" id="complete-lotus">
+                            <img src="assets/icons/logo.png" alt="Zen Mode Logo" class="lotus-img"
+                                style="width:100%;height:100%;">
+                        </div>
+
+                        <h2 class="completion-title">Session Complete</h2>
+                        <p class="completion-message">Well done! Take a moment to notice how you feel.</p>
+                    </div>
+
+                    <div class="completion-actions">
+                        <button class="primary-btn" id="another-session-btn">Start another session</button>
+                        <button class="secondary-btn" id="return-home-btn">Return to home</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- audio files -->
+    <audio id="chime-audio" src="assets/sounds/zen-meditation.mp3"></audio>
+    <audio id="completion-audio" src="assets/sounds/wake-up-sound.mp3" loop></audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
