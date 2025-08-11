@@ -10,7 +10,7 @@
 
 body {
     font-family: 'Bricolage Grotesque', sans-serif;
-    overflow: hidden; /* preventing scroll */
+    overflow-x: hidden; /* prevent horizontal scroll only */
     transition: all 0.7s ease-out; /* adding smooth transition */
     background-image: url('../assets/bg-image.png'); /* setting background image */
     background-size: cover; 
@@ -507,6 +507,8 @@ body {
     .container {
         max-width: 100%;
         padding: 0 16px;
+        overflow-y: auto; /* enable vertical scroll */
+        max-height: 100vh;
     }
     .back-btn {
         top: 16px;
